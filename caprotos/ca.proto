@@ -1,0 +1,29 @@
+syntax = "proto3";
+package caprotos;
+
+import "tenant_signing_cert.proto";
+import "device_cert.proto";
+import "ca_common.proto";
+
+option go_package = "github.com/HPInc/krypton-ca/caprotos";
+
+// RPCs exposed by the Certificate Authority service.
+service CertificateAuthority {
+
+  // Tenant signing certificate lifecycle management RPCs.
+  rpc CreateTenantSigningCertificate (CreateTenantSigningCertificateRequest)
+    returns (CreateTenantSigningCertificateResponse) {}
+  rpc GetTenantSigningCertificate (GetTenantSigningCertificateRequest)
+    returns (GetTenantSigningCertificateResponse) {}
+  rpc DeleteTenantSigningCertificate (DeleteTenantSigningCertificateRequest)
+    returns (DeleteTenantSigningCertificateResponse) {}
+
+  // Device certificate lifecycle management RPCs.
+  rpc CreateDeviceCertificate (CreateDeviceCertificateRequest)
+    returns (CreateDeviceCertificateResponse) {}
+  rpc RenewDeviceCertificate (RenewDeviceCertificateRequest)
+    returns (RenewDeviceCertificateResponse) {}
+
+  // Health check/uptime check RPC.
+  rpc Ping (PingRequest) returns (PingResponse) {}
+}

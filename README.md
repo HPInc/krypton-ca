@@ -1,1 +1,1 @@
-# krypton-ca
+# The Krypton Certificate Authority

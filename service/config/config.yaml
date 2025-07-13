@@ -1,0 +1,28 @@
+## Configuration file for the Krypton Certificate Authority.
+
+# Server configuration.
+server:
+  host: krypton-ca
+  rpc_port: 6969
+  rest_port: 6970
+
+  # Specifies whether to log all incoming REST requests to the debug log.
+  # Note - this value should be set to false in production. Toggle only
+  # for debugging purposes when other avenues have been exhausted.
+  log_rest_requests: false
+
+# Certificate authority configuration settings.
+certificate_authority:
+  kms_provider: local_kms     # Key Management Service provider to use.
+  cert_store: localdb         # Certificate store to use.
+  per_tenant_signing: true    # Whether to use per-tenant signing key.
+  cert_template:              # Settings for certificate templates used by the CA.
+    issuer_name: HP Device Root Certificate Authority
+    country: US
+    province: California
+    locality: Palo Alto
+    street_address: 1501 Page Mill Road, Palo Alto
+    postal_code: '94304'
+    organization: HP Inc.
+
+test_mode: true

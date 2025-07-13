@@ -1,0 +1,81 @@
+syntax = "proto3";
+package caprotos;
+
+import "ca_common.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/HPInc/krypton-ca/caprotos";
+
+
+message CreateDeviceCertificateRequest {
+  // Common request header including protocol version & request identifier.
+  CaRequestHeader header = 1;
+
+  // Version of the CreateDeviceCertificateRequest message.
+  string version = 2;
+
+  // Unique identifier for the tenant (Tenant ID).
+  string tid = 3;
+
+  // Certificate signing request (CSR).
+  bytes csr = 4;
+}
+
+message CreateDeviceCertificateResponse {
+  // Common response header including protocol version & request identifier.
+  CaResponseHeader header = 1;
+
+  // Device certificate issued timestamp.
+  google.protobuf.Timestamp issued_time = 2;
+
+  // Device certificate expiry timestamp.
+  google.protobuf.Timestamp expiry_time = 3;
+
+  // Unique identifier issued to the device.
+  string device_id = 4;
+
+  // Device certificate (DER bytes).
+  bytes device_certificate = 5;
+
+  // Parent certificates - tenant signing certificate and
+  // the CA certificate.
+  bytes parent_certificates = 6;
+}
+
+message RenewDeviceCertificateRequest {
+  // Common request header including protocol version & request identifier.
+  CaRequestHeader header = 1;
+
+  // Version of the RenewDeviceCertificateRequest message.
+  string version = 2;
+
+  // Unique identifier for the tenant (Tenant ID).
+  string tid = 3;
+
+  // Unique identifier issued to the device.
+  string device_id = 4;
+
+  // Certificate signing request (CSR).
+  bytes csr = 5;
+}
+
+message RenewDeviceCertificateResponse {
+  // Common response header including protocol version & request identifier.
+  CaResponseHeader header = 1;
+
+  // Renewed device certificate issued timestamp.
+  google.protobuf.Timestamp issued_time = 2;
+
+  // Device certificate expiry timestamp.
+  google.protobuf.Timestamp expiry_time = 3;
+
+  // Unique identifier issued to the device.
+  string device_id = 4;
+
+  // Device certificate (DER bytes).
+  bytes device_certificate = 5;
+
+  // Parent certificates - tenant signing certificate and
+  // the CA certificate.
+  bytes parent_certificates = 6;
+}

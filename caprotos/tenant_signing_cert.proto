@@ -1,0 +1,71 @@
+syntax = "proto3";
+package caprotos;
+
+import "ca_common.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/HPInc/krypton-ca/caprotos";
+
+
+message CreateTenantSigningCertificateRequest {
+  // Common request header including protocol version & request identifier.
+  CaRequestHeader header = 1;
+
+  // Version of the CreateTenantSigningCertificateRequest message.
+  string version = 2;
+
+  // Unique identifier for the tenant (Tenant ID).
+  string tid = 3;
+
+  // Display name of the tenant.
+  string name = 4;
+
+  // DNS domain name of the tenant. eg. 'fakephilosopher.com'.
+  string domain_name = 5;
+}
+  
+message CreateTenantSigningCertificateResponse {
+  // Common response header including protocol version & request identifier.
+  CaResponseHeader header = 1;
+
+  // Creation timestamp.
+  google.protobuf.Timestamp create_time = 2;
+}
+  
+message GetTenantSigningCertificateRequest {
+  // Common request header including protocol version & request identifier.
+  CaRequestHeader header = 1;
+
+  // Version of the GetTenantSigningCertificateRequest message.
+  string version = 2;
+
+  // Unique identifier for the tenant (Tenant ID).
+  string tid = 3;
+}
+
+message GetTenantSigningCertificateResponse {
+  // Common response header including protocol version & request identifier.
+  CaResponseHeader header = 1;
+
+  // Tenant signing certificate (DER bytes)
+  bytes signing_certificate = 2;
+}
+
+message DeleteTenantSigningCertificateRequest {
+  // Common request header including protocol version & request identifier.
+  CaRequestHeader header = 1;
+
+  // Version of the DeleteTenantSigningCertificateRequest message.
+  string version = 2;
+
+  // Unique identifier for the tenant (Tenant ID).
+  string tid = 3;
+}
+
+message DeleteTenantSigningCertificateResponse {
+  // Common response header including protocol version & request identifier.
+  CaResponseHeader header = 1;
+
+  // Deletion timestamp.
+  google.protobuf.Timestamp delete_time = 2;
+}

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  ca-test:
+    image: krypton-ca-test
+    hostname: ca-test
+    container_name: ca-test
+    ports:
+    - 6969:6969
+    - 6970:6970
+    networks:
+    - krypton_net
+    environment:
+    - GRPC_GO_LOG_VERBOSITY_LEVEL=99
+    - GO_DEBUG="http2debug=2"
+    - GRPC_TRACE="all"
+    - GRPC_GO_LOG_SEVERITY_LEVEL="info"
+    - CA_TEST_MODE="enabled"
+    tty: true
+networks:
+  krypton_net:
+    driver: bridge
